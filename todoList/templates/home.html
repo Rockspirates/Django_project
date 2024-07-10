@@ -1,0 +1,46 @@
+{% extends "base_home.html" %}
+
+{% block home_active %}
+  active
+{% endblock home_active %}
+
+
+{% block body %}
+
+      {% if  success %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Hello there!</strong> Your task is registered
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %}
+
+      <div class="container my-3">
+        <h2 class="text-center"> Welcome Back! Add your Task </h2>
+      </div>
+
+      <div class="container">
+        <form action="/home" method="post" >
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="task">Task Title</label>
+              <input type="text" class="form-control" id="task" name="task" aria-describedby="emailHelp">
+              <small id="taskHelp" class="form-text text-muted">Enter your task name.</small>
+            </div>
+            <div class="form-group">
+              <label for="desc">Task description</label>
+               <textarea class="form-control" name="desc" id="desc" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="deadline">Deadline</label>
+              <input type="datetime-local" class="form-control" id="deadline" name="deadline" aria-describedby="deadlineHelp" required>
+              <small id="deadlineHelp" class="form-text text-muted">Enter your task Deadline.</small>
+            </div>            
+            <button type="submit" class="btn btn-primary">Submit</button>
+            
+          </form>
+      </div>
+
+{% endblock body %}
+

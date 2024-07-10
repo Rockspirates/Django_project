@@ -1,0 +1,42 @@
+{% extends "base_home.html" %}
+
+{% block task_active %}
+  active
+{% endblock task_active %}
+
+{% block body %}
+<div class="container my-3">
+  <h2 class="text-center py-3"> Your Tasks </h2>
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">S.No.</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Deadline</th>
+          <th scope="col">remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t in  tasks%} 
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{t.taskTitle}}</td>
+          <td>{{t.taskDesc}}</td>
+          <td>{{ t.deadline}}</td>
+          <td>
+            <form action="/task" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="taskTitle" value="{{ t.taskTitle }}">
+              <input type="hidden" name="taskDesc" value="{{ t.taskDesc }}">
+              <input type="hidden" name="deadline" value="{{ t.deadline }}">
+              <button type="submit" class="btn btn-success">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock body %}
+

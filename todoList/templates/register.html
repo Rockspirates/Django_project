@@ -1,0 +1,53 @@
+{% extends "base_login.html" %}
+
+{% block title %}
+Register
+{% endblock title %}
+
+{% block nav_title %}
+Register
+{% endblock nav_title %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="text-centre my-3">
+        Fill your details
+    </h1>
+    <form action = "/register" method="post">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% endif %}" role="alert">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% csrf_token %}
+        
+        <div class="row">
+            <div class="col">
+                <label for="first_name">First Name</label>
+            <input type="text" class="form-control" placeholder="First name" name="first_name" id="first_name">
+            </div>
+            <div class="col">
+                <label for="last_name">Last Name</label>
+            <input type="text" class="form-control" placeholder="Last name" name = "last_name" id="last_name">
+            </div>
+        </div>
+        <div class="form-group my-3">
+        <label for="exampleInputEmail1">UserName</label>
+        <input type="text" class="form-control" name = "username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="UserName">
+        <small id="emailHelp" class="form-text text-muted">Username must have both english letters and numbers.</small>
+        </div>
+        <div class="form-group my-3">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control"name = "password" id="exampleInputPassword1" aria-describedby="passHelp" placeholder="Password">
+        <small id="passHelp" class="form-text text-muted">Password must have both english letters and numbers.</small>
+        </div>
+        <p>Login to your account at <a href="/">login</a></p>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+{% endblock body %}

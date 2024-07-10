@@ -1,0 +1,36 @@
+{% extends "base_home.html" %}
+
+{% block cp_active %}
+  active
+{% endblock cp_active %}
+
+{% block body %}
+
+<div class="container my-3">
+  <h2 class="text-center py-3"> Upcoming Contests </h2>
+
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">S.No.</th>
+          <th scope="col">Contest Name</th>
+          <th scope="col">Start time</th>
+          <th scope="col">Length</th>
+          <th scope="col">register</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t in  contests%} 
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{t.name}}</td>
+          <td>{{t.start_time}}</td>
+          <td>{{t.length}}</td>
+          <td><a href="{{t.url}}" target="_blanck">{{t.url}}</a></td>
+        </tr>
+        {% endfor %}
+      </tbody> 
+    </table>
+</div>
+{% endblock body %}
+
